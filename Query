@@ -1,0 +1,45 @@
+--:Creating Managers table
+CREATE TABLE Managers (
+ Manager_Id INT PRIMARY KEY,
+ First_Name VARCHAR(50),
+ Last_Name VARCHAR(50),
+ DOB DATE,
+ Age INT CHECK (Age >= 18 AND Age <= 65),
+ Last_Update DATE,
+ Gender VARCHAR(10),
+ Department VARCHAR(50) NOT NULL,
+ Salary DECIMAL(10, 2) NOT NULL
+);
+--: Inserting 10 rows into the Managers table
+INSERT INTO Managers (Manager_Id, First_Name, Last_Name, DOB, Age, Last_Update, 
+Gender, Department, Salary) VALUES
+(1, 'Raj', 'Sharma', '1985-03-12', 39, '2024-10-10', 'Male', 'Finance', 30000),
+(2, 'Aaliya', 'Khan', '1990-07-15', 34, '2024-10-10', 'Female', 'IT', 35000),
+(3, 'Vikas', 'Patel', '1988-09-21', 36, '2024-10-10', 'Male', 'HR', 25000),
+(4, 'Pooja', 'Singh', '1987-05-25', 37, '2024-10-10', 'Female', 'IT', 40000),
+(5, 'Suresh', 'Gupta', '1992-01-10', 32, '2024-10-10', 'Male', 'Operations', 28000),
+(6, 'Neha', 'Chopra', '1989-08-19', 35, '2024-10-10', 'Female', 'Finance', 26000),
+(7, 'Amit', 'Joshi', '1984-11-12', 40, '2024-10-10', 'Male', 'IT', 32000),
+(8, 'Priya', 'Bose', '1991-02-17', 33, '2024-10-10', 'Female', 'HR', 22000),
+(9, 'Ravi', 'Mehta', '1986-12-01', 37, '2024-10-10', 'Male', 'Marketing', 27000),
+(10, 'Ankita', 'Verma', '1993-06-10', 31, '2024-10-10', 'Female', 'IT', 34000);
+--: Query to retrieve the Name and DOB of the manager with manager id 1:
+SELECT First_Name, Last_Name, DOB
+FROM Managers
+WHERE Manager_Id = 1;
+--: Query to display the Annual Income of all managers
+SELECT First_Name, Last_Name, (Salary * 12) AS Annual_Income
+FROM Managers;
+--: Query to display records of All Managers except “Aaliya”:
+SELECT * 
+FROM Managers 
+WHERE First_Name != 'Aaliya';
+--: Query to display records of managers in IT department and earning more than 25000
+SELECT * 
+FROM Managers 
+WHERE Department = 'IT' 
+ AND Salary > 25000;
+--: Query to display records of managers earning between 10000 and 35000
+SELECT * 
+FROM Managers 
+WHERE Salary BETWEEN 10000 AND 35000;
