@@ -1,0 +1,46 @@
+Query:
+->Creating the table
+	CREATE TABLE Managers(
+		Manager_id INT PRIMARY KEY,
+		First_name VARCHAR(50),
+		Last_name VARCHAR(50),
+		DOB DATE,
+		Age INT CHECK(Age>=30 and Age<65),
+		Last_update TIMESTAMP NOT NULL, 
+		Gender CHAR(1) NOT NULL,
+		Department VARCHAR(50) NOT NULL,
+		Salary DECIMAL(10,2) NOT NULL);
+
+1.Insert 10 rows.
+	INSERT INTO Managers (Manager_id, First_name, Last_name, DOB, Age, Last_update, Gender, Department, Salary)
+	VALUES
+	(1, 'Ashish', 'Radhakrisnan', '1980-05-15', '44', '6:53 AM', 'M', 'Finance', 30000.00),
+	(2, 'Dharani', 'Sampath', '1990-11-25', '33', '6:53 AM', 'M', 'IT', 29000.00),
+	(3, 'Vivek', 'Repaka', '1985-03-12', '39', '11:17 AM', 'M', 'HR', 9000.00),
+	(4, 'Arun', 'Chandrakumaran', '1978-08-19', '46', '4:47 PM', 'M', 'IT', 32000.00),
+	(5, 'Bijoy', 'Sivasankaran', '1982-07-25', '42', '10:43 AM', 'M', 'Marketing', 27000.00),
+	(6, 'Aaliya', 'Verma', '1992-12-30', '31', '9:01 AM', 'F', 'Finance', 31000.00),
+	(7, 'Sujatha', 'Varathan', '1983-01-05', '41', '10:27 AM', 'F', 'CIS', 8000.00),
+	(8, 'Gaurav', 'Sood', '1988-06-14', '36', '10:08 PM', 'M', 'Sales', 22000.00),
+	(9, 'Anita', 'Gupta', '1979-09-17', '44', '2:40 PM', 'F', 'IT', 24000.00),
+	(10, 'Sneha', 'Chowdhary', '1986-04-22', '38', '3:16 AM', 'F', 'IT', 30000.00);
+
+2.Write a query that retrieves the name and date of birth of the manager with Manager_Id 1.
+	SELECT First_name,Last_name,DOB FROM Managers
+	WHERE Manager_id=1;
+
+3.Write a query to display the annual income of all managers.
+	SELECT Manager_id, First_name, Last_name, (Salary*12) as Annual_income 
+	FROM Managers; 
+
+4.Write a query to display records of all managers except ‘Aaliya’. 
+	SELECT * FROM Managers 
+	WHERE First_name<>'Aaliya';
+
+5.Write a query to display details of managers whose department is IT and earns more than 25000 per month. 
+	SELECT * FROM Managers 
+	WHERE Department= 'IT' and Salary > 25000;
+
+6.Write a query to display details of managers whose salary is between 10000 and 35000.
+	SELECT * FROM Managers
+	WHERE Salary BETWEEN 10000 AND 35000;
